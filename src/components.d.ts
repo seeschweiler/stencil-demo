@@ -6,6 +6,35 @@
 
 import '@stencil/router';
 
+import { MyFirstComponent as MyFirstComponent } from './components/my-first-component/my-first-component';
+
+interface HTMLMyFirstComponentElement extends MyFirstComponent, HTMLElement {
+}
+declare var HTMLMyFirstComponentElement: {
+  prototype: HTMLMyFirstComponentElement;
+  new (): HTMLMyFirstComponentElement;
+};
+declare global {
+  interface HTMLElementTagNameMap {
+      "my-first-component": HTMLMyFirstComponentElement;
+  }
+  interface ElementTagNameMap {
+      "my-first-component": HTMLMyFirstComponentElement;
+  }
+  namespace JSX {
+      interface IntrinsicElements {
+          "my-first-component": JSXElements.MyFirstComponentAttributes;
+      }
+  }
+  namespace JSXElements {
+      export interface MyFirstComponentAttributes extends HTMLAttributes {
+          mode?: string,
+          color?: string,
+        
+      }
+  }
+}
+
 import { MyName as MyName } from './components/my-name/my-name';
 
 interface HTMLMyNameElement extends MyName, HTMLElement {
@@ -28,9 +57,11 @@ declare global {
   }
   namespace JSXElements {
       export interface MyNameAttributes extends HTMLAttributes {
+          mode?: string,
+          color?: string,
         
-          first?: any,
-          last?: any
+          first?: string,
+          last?: string
       }
   }
 }
